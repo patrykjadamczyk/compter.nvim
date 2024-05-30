@@ -1,10 +1,5 @@
 # Compter.nvim
 
-<p align="center">
-<a href="./i18n/zh.md">[简体中文]</a>
-<a href="./i18n/fr.md">[Français]</a>
-</p>
-
 Compter.nvim provides an easy way to customize and power the ability of `<C-a>` and `<C-x>`. 
 
 <p align="center">
