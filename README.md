@@ -8,7 +8,7 @@ Compter.nvim provides an easy way to customize and power the ability of `<C-a>` 
 
 By default, Neovim enable you to use `<C-a>` and `<C-x>` to increase and descrease value of numbers. But with support of compter.nvim, you can customize `<C-a>` and `<C-x>` to not only increase and decrease value of numbers but also to enable you to do more powerful things, such as increase and descrease alphabet value (e.g. increase from a to b) and increase and decrease date value (e.g. increase from 01/01/2020 to 02/01/2020). 
 
-1. [Installnation](#installnation)
+1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Configuration](#configuration)
 4. [Templates](#templates)
@@ -16,7 +16,7 @@ By default, Neovim enable you to use `<C-a>` and `<C-x>` to increase and descrea
     2. [Provide your own template](#provide-your-own-template)
 5. [How to contribute](#how-to-contribute)
 
-## Installnation
+## Installation
 
 Use any plugin managers you like, here is an example using lazy.nvim:
 
