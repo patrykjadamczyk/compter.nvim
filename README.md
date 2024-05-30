@@ -51,7 +51,7 @@ require("lazy").setup({
 
 Compter.nvim **does not embed built-in templates**, you can choose and add provided templates from [Useful template](#useful-templates) or [Provide your own template](#provide-your-own-template)
 
-## Usage 
+## Usage
 
 **Note: You need either add at least one template or enable fallback to make it work.**
 
