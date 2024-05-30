@@ -468,7 +468,7 @@ A template must be as following structure:
     priority = 0, -- priority, template with higher priority will be matched first
     -- How to increase content (<C-a>)
     -- @param content: content is the matched text
-    -- @return newContent, handled: handled means whether continue to matche other templates 
+    -- @return newContent, handled: handled means whether continue to match other templates
     increase = function(content) 
         ...
         return newContent, true
