@@ -1,12 +1,28 @@
 {
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
     "workspace.library": [
-        "/Users/ruta/.local/share/nvim/lazy/neodev.nvim/types/stable",
-        "/opt/homebrew/Cellar/neovim/0.9.0/share/nvim/runtime/lua",
-        "/Users/ruta/Coding/NeovimPlugins/compter.nvim/lua",
+        "C:\\Users\\patry\\AppData\\Local\\nvim-data\\lazy\\neodev.nvim\\types\\nightly",
+        "/home/patryk/.local/share/nvim/lazy/neodev.nvim/types/nightly",
+        "C:\\Users\\patryk\\AppData\\Local\\bob\\share\\nvim\\runtime\\lua",
+        "/home/patryk/.local/share/bob/nightly/nvim-linux64/share/nvim/runtime/lua",
+        "C:\\Users\\patryk\\go\\src\\github.com\\patrykjadamczyk\\compter.nvim\\lua",
+        "/home/patryk/go/src/github.com/patrykjadamczyk/compter.nvim/lua",
+        "${3rd}/luassert/library",
+        "${3rd}/luv/lib",
+        "${3rd}/luv/library"
+    ],
+    "Lua.workspace.library": [
+        "C:\\Users\\patry\\AppData\\Local\\nvim-data\\lazy\\neodev.nvim\\types\\nightly",
+        "/home/patryk/.local/share/nvim/lazy/neodev.nvim/types/nightly",
+        "C:\\Users\\patryk\\AppData\\Local\\bob\\share\\nvim\\runtime\\lua",
+        "/home/patryk/.local/share/bob/nightly/nvim-linux64/share/nvim/runtime/lua",
+        "${3rd}/luassert/library",
+        "${3rd}/luv/lib",
         "${3rd}/luv/library"
     ],
     "diagnostics.disable": [
         "unused-local",
-        "undefined-field"
-    ]
+        "different-requires"
+    ],
+    "hint.enable": true
 }
