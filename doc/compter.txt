@@ -1,0 +1,144 @@
+
+==============================================================================
+                                                               *compter.nvim*
+
+Compter.nvim provides an easy way to customize ability of <C-a> and <C-x>.
+
+------------------------------------------------------------------------------
+                                                               *compter.setup()*
+                            `compter.setup`({config})
+Module setup
+
+Parameters ~
+{config} `(table|nil)` Module config table. See |compter.config|.
+
+Usage ~
+`require('compter').setup({})` (replace `{}` with your `config` table)
+
+------------------------------------------------------------------------------
+                                                            *compter.increase()*
+                            `compter.increase`()
+Operation of increase on cursor
+
+Usage ~
+`require('compter').increase()`
+
+------------------------------------------------------------------------------
+                                                            *compter.decrease()*
+                            `compter.decrease`()
+Operation of decrease on cursor
+
+Usage ~
+`require('compter').decrease()`
+
+------------------------------------------------------------------------------
+                                                                *compter.config*
+                                `compter.config`
+Module config
+
+Default values:
+>
+  require('compter').setup({
+    -- Provide and customize templates
+    templates = {
+    },
+    -- Whether fallback to nvim built-in
+    -- increase and decrease operation
+    fallback = false,
+    -- Whether to not set default keymaps
+    no_default_keymaps = false,
+  })
+<
+# Options ~
+
+## Custom keybinds ~
+
+First you need to provide `no_default_keymaps` option to disable default
+mappings.
+Then you need to define your own keymaps.
+
+Example:
+>
+  require('compter').setup({
+    no_default_keymaps = true,
+  })
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>a",
+    "<cmd>lua require('compter').increase()<CR>",
+    { noremap = true, silent = true }
+  )
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>x",
+    "<cmd>lua require('compter').decrease()<CR>",
+    { noremap = true, silent = true }
+  )
+<
+
+You can use lazy.nvim for that as well.
+
+Example:
+>
+  {
+    "kdheepak/lazygit.nvim",
+    config = true,
+    opts = {
+      templates = {
+	-- your templates
+      },
+      fallback = true,
+      no_default_keymaps = true,
+    },
+    keys = {
+      {
+	"<leader>a",
+	"<cmd>lua require('compter').increase()<CR>",
+	noremap = true,
+	silent = true,
+      },
+      {
+	"<leader>x",
+	"<cmd>lua require('compter').decrease()<CR>",
+	noremap = true,
+	silent = true,
+      },
+    },
+  },
+<
+
+## Custom templates ~
+
+Each entry in `config.templates` is table with following fields:
+- `pattern` which is pattern to match
+- `priority` which is priority of template, higher priority templates are
+  applied first
+- `increase` which is function to handle increase operation, this function is
+  getting content of matched text and should return new content and boolean
+  indicating whether to match other templates
+- `decrease` which is function to handle decrease operation, this function is
+  getting content of matched text and should return new content and boolean
+  indicating whether to match other templates
+
+Example:
+>
+  require('compter').setup({
+    templates = {
+      -- this template match numbers
+      {
+        pattern = [[-\?\d\+]],
+        priority = 0,
+        increase = function(content)
+          content = tonumber(content)
+          return content + 1, true
+        end,
+        decrease = function(content)
+          content = tonumber(content)
+          return content - 1, true
+        end,
+      }
+    },
+  })
+<
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
