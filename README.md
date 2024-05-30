@@ -41,6 +41,8 @@ require("lazy").setup({
             },
             -- Whether fallback to nvim-built-in increase and decrease operation, default to false
             fallback = false 
+            -- Whether to not set default keymaps
+            no_default_keymaps = false,
         })
     end,
   }
