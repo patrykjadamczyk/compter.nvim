@@ -294,6 +294,168 @@ I may continuely add more templates later:
 }
 ```
 
+```lua
+-- for yes/no
+{
+    pattern = [[\<\(yes\|no\|YES\|NO\|Yes\|No\)\>]],
+    priority = 100,
+    increase = function(content)
+        local switch = {
+            ["yes"] = "no",
+            ["no"] = "yes",
+            ["Yes"] = "No",
+            ["No"] = "Yes",
+            ["YES"] = "NO",
+            ["NO"] = "YES",
+        }
+        return switch[content], true
+    end,
+    decrease = function(content)
+        local switch = {
+            ["yes"] = "no",
+            ["no"] = "yes",
+            ["Yes"] = "No",
+            ["No"] = "Yes",
+            ["YES"] = "NO",
+            ["NO"] = "YES",
+        }
+        return switch[content], true
+    end,
+}
+```
+
+```lua
+-- for on/off
+    {
+        pattern = [[\<\(on\|off\|ON\|OFF\|On\|Off\)\>]],
+    priority = 100,
+    increase = function(content)
+        local switch = {
+            ["on"] = "off",
+            ["off"] = "on",
+            ["On"] = "Off",
+            ["Off"] = "On",
+            ["ON"] = "OFF",
+            ["OFF"] = "ON",
+        }
+        return switch[content], true
+    end,
+    decrease = function(content)
+        local switch = {
+            ["on"] = "off",
+            ["off"] = "on",
+            ["On"] = "Off",
+            ["Off"] = "On",
+            ["ON"] = "OFF",
+            ["OFF"] = "ON",
+        }
+        return switch[content], true
+    end,
+}
+```
+
+```lua
+-- for enable
+{
+    pattern = [[\<\(enable\|disable\|ENABLE\|DISABLE\|Enable\|Disable\)\>]],
+    priority = 100,
+    increase = function(content)
+        local switch = {
+            ["enable"] = "disable",
+            ["disable"] = "enable",
+            ["Enable"] = "Disable",
+            ["Disable"] = "Enable",
+            ["ENABLE"] = "DISABLE",
+            ["DISABLE"] = "ENABLE",
+        }
+        return switch[content], true
+    end,
+    decrease = function(content)
+        local switch = {
+            ["enable"] = "disable",
+            ["disable"] = "enable",
+            ["Enable"] = "Disable",
+            ["Disable"] = "Enable",
+            ["ENABLE"] = "DISABLE",
+            ["DISABLE"] = "ENABLE",
+        }
+        return switch[content], true
+    end,
+},
+```
+
+```lua
+-- for enabled
+{
+    pattern = [[\<\(enabled\|disabled\|ENABLED\|DISABLED\|Enabled\|Disabled\)\>]],
+    priority = 100,
+    increase = function(content)
+        local switch = {
+            ["enabled"] = "disabled",
+            ["disabled"] = "enabled",
+            ["Enabled"] = "Disabled",
+            ["Disabled"] = "Enabled",
+            ["ENABLED"] = "DISABLED",
+            ["DISABLED"] = "ENABLED",
+        }
+        return switch[content], true
+    end,
+    decrease = function(content)
+        local switch = {
+            ["enabled"] = "disabled",
+            ["disabled"] = "enabled",
+            ["Enabled"] = "Disabled",
+            ["Disabled"] = "Enabled",
+            ["ENABLED"] = "DISABLED",
+            ["DISABLED"] = "ENABLED",
+        }
+        return switch[content], true
+    end,
+}
+```
+
+7. For neorg todo:
+
+```lua
+-- for neorg todo
+{
+    pattern = [[-\ \%u0028\([-\ x=_!?+]\)\%u0029\ ]],
+    priority = 100,
+    increase = function(content)
+        if vim.bo.filetype ~= "norg" then
+            return content, false
+        end
+        local switch = {
+            ["- ( ) "] = "- (-) ",
+            ["- (-) "] = "- (x) ",
+            ["- (x) "] = "- (=) ",
+            ["- (=) "] = "- (_) ",
+            ["- (_) "] = "- (!) ",
+            ["- (!) "] = "- (?) ",
+            ["- (?) "] = "- (+) ",
+            ["- (+) "] = "- ( ) ",
+        }
+        return switch[content], true
+    end,
+    decrease = function(content)
+        if vim.bo.filetype ~= "norg" then
+            return content, false
+        end
+        local switch = {
+            ["- ( ) "] = "- (+) ",
+            ["- (+) "] = "- (?) ",
+            ["- (?) "] = "- (!) ",
+            ["- (!) "] = "- (_) ",
+            ["- (_) "] = "- (=) ",
+            ["- (=) "] = "- (x) ",
+            ["- (x) "] = "- (-) ",
+            ["- (-) "] = "- ( ) ",
+        }
+        return switch[content], true
+    end,
+}
+```
+
 </details>
 
 
