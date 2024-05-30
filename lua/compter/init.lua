@@ -42,6 +42,8 @@ local config = {
     templates = {},
     -- whether fallback to default/nvim-built-in operation
     fallback = false,
+    -- whether to not set default keymaps
+    no_default_keymaps = false,
 }
 
 -- Operate on matched content
@@ -125,21 +127,23 @@ local decrease = function()
 end
 
 local setup = function(opts)
+    -- merge templates
+    config = vim.tbl_deep_extend("force", config, opts or {})
     -- replace default keymap of <C-a> and <C-x>
-    vim.api.nvim_set_keymap(
+    if not config.no_default_keymaps then
+        vim.api.nvim_set_keymap(
         "n",
         "<C-a>",
         "<cmd>lua require('compter').increase()<CR>",
         { noremap = true, silent = true }
-    )
-    vim.api.nvim_set_keymap(
+        )
+        vim.api.nvim_set_keymap(
         "n",
         "<C-x>",
         "<cmd>lua require('compter').decrease()<CR>",
         { noremap = true, silent = true }
-    )
-    -- merge templates
-    config = vim.tbl_deep_extend("force", config, opts or {})
+        )
+    end
     -- sort templates by priority
     sortTemplatesByPriority(config.templates)
 end
